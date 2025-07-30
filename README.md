@@ -1,140 +1,194 @@
-# Grana PDF - Ebooks Personalizados por IA
+# 🚀 Grana PDF - Ebooks Personalizados por IA
 
-## Sobre o Projeto
+## 📖 Sobre o Projeto
 
-O Grana PDF é uma plataforma que gera automaticamente ebooks personalizados por nicho usando inteligência artificial e os disponibiliza para download em PDF por R$ 9,97.
+O **Grana PDF** é uma plataforma completa que gera automaticamente ebooks personalizados por nicho usando inteligência artificial e os disponibiliza para download em PDF.
 
-## Funcionalidades Implementadas
+### ✨ Funcionalidades Principais
 
-### ✅ User Story 1.1: Landing Page Principal
-- **Status:** Implementado
-- **Descrição:** Landing page atrativa com apresentação do produto
-- **Critérios de Aceitação:**
-  - ✅ Página carrega em menos de 3 segundos
-  - ✅ Exibe título, subtítulo e call-to-action claro
-  - ✅ Mostra lista de nichos disponíveis
-  - ✅ Botão "Começar Agora" leva para seleção de nicho
-  - ✅ Design responsivo para mobile e desktop
-  - ✅ Inclui seção de benefícios e preço
+- **🎯 10 Nichos Especializados** - Fitness, Culinária, Negócios, Tecnologia, Marketing, Educação, Moda, Viagens, Finanças, Produtividade
+- **🤖 IA Avançada** - Conteúdo gerado com GPT-4o-mini
+- **💳 Pagamento Integrado** - Stripe com 4 planos de créditos
+- **📄 PDF Profissional** - Layout otimizado e formatação perfeita
+- **⚡ Geração Rápida** - Ebooks prontos em menos de 2 minutos
+- **🎨 Interface Moderna** - Design responsivo e UX otimizada
 
-### ✅ User Story 2.1: Interface de Seleção de Nicho
-- **Status:** Implementado
-- **Descrição:** Interface intuitiva para seleção de nicho
-- **Critérios de Aceitação:**
-  - ✅ Lista visual de nichos com ícones
-  - ✅ Descrição breve de cada nicho
-  - ✅ Seleção por clique/tap
-  - ✅ Validação de seleção obrigatória
-  - ✅ Botão "Continuar" só ativa após seleção
-  - ✅ Feedback visual da seleção
+## 🛠️ Stack Tecnológica
 
-## Nichos Disponíveis
-
-1. **Fitness e Saúde** - Conteúdo sobre exercícios, nutrição e bem-estar
-2. **Culinária e Gastronomia** - Receitas, técnicas culinárias e dicas gastronômicas
-3. **Negócios e Empreendedorismo** - Estratégias de negócio e empreendedorismo
-4. **Tecnologia** - Tendências, inovações e dicas tecnológicas
-5. **Marketing Digital** - Estratégias de marketing online e redes sociais
-6. **Educação** - Métodos de ensino e desenvolvimento pessoal
-7. **Moda e Beleza** - Tendências de moda e dicas de beleza
-8. **Viagens** - Destinos, dicas de viagem e turismo
-9. **Finanças Pessoais** - Educação financeira e planejamento pessoal
-10. **Produtividade** - Técnicas de produtividade e organização
-
-## Stack Tecnológica
-
-- **Frontend:** Next.js 14 (App Router)
+- **Frontend:** Next.js 15 (App Router)
 - **Styling:** Tailwind CSS
 - **Ícones:** Lucide React
-- **IA:** OpenAI API (preparado para integração)
-- **PDF:** jsPDF (preparado para integração)
-- **Pagamentos:** Stripe (preparado para integração)
+- **IA:** OpenAI API (GPT-4o-mini)
+- **PDF:** jsPDF + Puppeteer
+- **Pagamentos:** Stripe
+- **Banco:** SQLite (local)
+- **Deploy:** Vercel
 
-## Como Executar
+## 📦 Planos Disponíveis
 
-1. **Instalar dependências:**
-   ```bash
-   npm install
-   ```
+| Plano | PDFs | Preço | Economia |
+|-------|------|-------|----------|
+| 🥉 **TESTE** | 1 | R$ 9,97 | - |
+| 🥈 **STARTER** | 3 | R$ 24,90 | 17% |
+| 🥇 **POPULAR** | 10 | R$ 69,90 | 30% |
+| 💎 **PREMIUM** | 25 | R$ 149,90 | 40% |
+| ⚡ **PERSONALIZADO** | 25+ | R$ 5,99/cada | - |
 
-2. **Executar em desenvolvimento:**
-   ```bash
-   npm run dev
-   ```
+## 🚀 Como Executar
 
-3. **Build para produção:**
-   ```bash
-   npm run build
-   ```
+### Pré-requisitos
+- Node.js 18+
+- npm ou yarn
+- Conta no Stripe
+- Chave da OpenAI
 
-4. **Executar em produção:**
-   ```bash
-   npm start
-   ```
+### 1. Clone o repositório
+```bash
+git clone https://github.com/SEU_USUARIO/grana-pdf-app.git
+cd grana-pdf-app
+```
 
-## Estrutura do Projeto
+### 2. Instale as dependências
+```bash
+npm install
+```
+
+### 3. Configure as variáveis de ambiente
+Crie um arquivo `.env.local`:
+```env
+# Stripe Configuration
+STRIPE_SECRET_KEY=sk_test_sua_chave_secreta_aqui
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_sua_chave_publica_aqui
+STRIPE_WEBHOOK_SECRET=whsec_seu_webhook_secret_aqui
+
+# OpenAI Configuration
+OPENAI_API_KEY=sk-sua_chave_openai_aqui
+
+# Environment
+NODE_ENV=development
+```
+
+### 4. Execute em desenvolvimento
+```bash
+npm run dev
+```
+
+### 5. Build para produção
+```bash
+npm run build
+npm start
+```
+
+## 🏗️ Estrutura do Projeto
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx          # Layout principal com metadata
-│   ├── page.tsx            # Landing page principal
-│   └── globals.css         # Estilos globais
+│   ├── api/                    # APIs do backend
+│   │   ├── checkout/          # Integração Stripe
+│   │   ├── generate/          # Geração de PDFs
+│   │   └── webhook/           # Webhooks Stripe
+│   ├── checkout/              # Página de checkout
+│   ├── generate/              # Página de geração
+│   ├── success/               # Página de sucesso
+│   ├── page.tsx              # Landing page
+│   └── layout.tsx            # Layout principal
 ├── components/
-│   └── NicheSelector.tsx   # Componente de seleção de nicho
+│   ├── NicheSelector.tsx     # Seleção de nichos
+│   └── PackageSelector.tsx   # Seleção de planos
+└── lib/
+    ├── database.ts           # Banco SQLite
+    └── templates/            # Templates HTML
 ```
 
-## Próximos Passos
+## 🔧 Configuração do Stripe
 
-### Sprint 1 (MVP Core)
-- [ ] Integração com OpenAI API
-- [ ] Tela de geração com progresso
-- [ ] Integração com Stripe
-- [ ] Conversão para PDF
-- [ ] Sistema de pagamento
-- [ ] Deploy na Vercel
+### 1. Criar Produtos no Stripe
+- Acesse o [Dashboard do Stripe](https://dashboard.stripe.com/products)
+- Crie produtos para cada plano com os preços corretos
+- Copie os `price_id` gerados
 
-### Sprint 2 (Refinamentos)
-- [ ] Header e navegação melhorados
-- [ ] Validação e feedback aprimorados
-- [ ] Página de pagamento
-- [ ] Página de sucesso
-- [ ] Monitoramento e analytics
+### 2. Atualizar Price IDs
+No arquivo `src/app/api/checkout/route.ts`, substitua os placeholders:
+```javascript
+const PACKAGE_CONFIGS = {
+  teste: {
+    price_id: 'price_1RqfWvBx8wluQBPkKtzYXF3q',
+  },
+  // ... outros planos
+};
+```
 
-## Design System
+### 3. Configurar Webhook
+- Dashboard Stripe → Webhooks → Add endpoint
+- URL: `https://SEU_DOMINIO/api/webhook/stripe`
+- Eventos: `checkout.session.completed`
 
-### Cores
-- **Primária:** #3B82F6 (Azul)
-- **Secundária:** #10B981 (Verde)
-- **Neutra:** #F3F4F6 (Cinza claro)
-- **Texto:** #1F2937 (Cinza escuro)
+## 🚀 Deploy na Vercel
 
-### Componentes
-- Cards para seleção de nicho
-- Botões com estados hover
-- Gradientes para destaque
-- Ícones coloridos por nicho
+### 1. Instalar Vercel CLI
+```bash
+npm i -g vercel
+```
 
-## Performance
+### 2. Fazer login
+```bash
+vercel login
+```
 
-- ✅ Build otimizado
-- ✅ Linting e TypeScript configurados
-- ✅ Responsivo para mobile e desktop
-- ✅ Carregamento rápido (< 3s)
+### 3. Deploy
+```bash
+vercel --prod
+```
 
-## Contribuição
+### 4. Configurar variáveis no Vercel
+- Dashboard Vercel → Settings → Environment Variables
+- Adicionar todas as variáveis do `.env.local`
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature
-3. Implemente as mudanças
-4. Teste localmente
-5. Faça commit e push
-6. Abra um Pull Request
+## 🧪 Testes
 
-## Licença
+### Cartões de Teste do Stripe
+```
+Número: 4242 4242 4242 4242
+Data: Qualquer data futura
+CVC: Qualquer 3 dígitos
+```
 
-Este projeto está sob a licença MIT.
+### Fluxo de Teste
+1. Acesse a landing page
+2. Escolha um nicho
+3. Selecione um plano
+4. Complete o checkout
+5. Verifique se os créditos foram adicionados
+6. Teste a geração de PDF
+
+## 📊 Monitoramento
+
+- **Logs:** Dashboard Vercel → Functions
+- **Pagamentos:** Dashboard Stripe → Payments
+- **Webhooks:** Dashboard Stripe → Webhooks
+- **Banco:** Arquivo `credits.db` (local)
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 📞 Suporte
+
+- **Email:** suporte@granapdf.com
+- **Issues:** [GitHub Issues](https://github.com/SEU_USUARIO/grana-pdf-app/issues)
+- **Documentação:** [Wiki do Projeto](https://github.com/SEU_USUARIO/grana-pdf-app/wiki)
 
 ---
 
-**Desenvolvido com ❤️ usando Next.js 14 e Tailwind CSS**
+**Desenvolvido com ❤️ usando Next.js 15 e Tailwind CSS**
+
+⭐ **Se este projeto te ajudou, considere dar uma estrela!**
